@@ -17,10 +17,24 @@
                     </h2>
                     <p class='body'>{{ $post->body }}</p>
                 </div>
+                <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline" onsubmit="return deletePost()">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">delete</button> 
+                </form>
             @endforeach
         </div>
         <div class='pagenate'>
             {{ $posts->links() }}
         </div>
     </body>
+    <script>
+        function deletePost() {
+            if(window.confirm('削除すると復元できません．\n本当に削除しますか？')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
 </html>

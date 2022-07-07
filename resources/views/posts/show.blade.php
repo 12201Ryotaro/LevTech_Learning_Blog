@@ -10,6 +10,7 @@
         <h1 class="title">
             {{ $post->title }}
         </h1>
+        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
         <div class="content">
             <div class="content_post">
                 <h3>本文</h3>
@@ -17,8 +18,6 @@
             </div>
         </div>
         <div class="footer">
-            <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
             <a href="/">戻る</a>
         </div>
-    </body>
 </html>

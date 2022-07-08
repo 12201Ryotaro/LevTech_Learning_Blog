@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -10,6 +13,7 @@
         <h1 class="title">
             {{ $post->title }}
         </h1>
+        <small>{{ $post->user->name }}</small>
         <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
         <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
         <div class="content">
@@ -22,3 +26,4 @@
             <a href="/">戻る</a>
         </div>
 </html>
+@endsection

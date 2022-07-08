@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -8,6 +11,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+        <p>{{Auth::user()->name}}</p>
         <a href="/posts/create">create</a>
         <div class='posts'>
             @foreach ($posts as $post)
@@ -15,6 +19,7 @@
                     <h2 class='title'>
                         <a href="posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
+                    <small>{{ $post->user->name }}</small>
                     <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     <p class='body'>{{ $post->body }}</p>
                 </div>
@@ -28,6 +33,15 @@
         <div class='pagenate'>
             {{ $posts->links() }}
         </div>
+        <div>
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </body>
     <script>
         function deletePost() {
@@ -39,3 +53,4 @@
         }
     </script>
 </html>
+@endsection
